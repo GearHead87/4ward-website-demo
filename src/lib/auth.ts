@@ -2,6 +2,18 @@ import User from '@/models/user.model';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
+import { User as UserType } from 'next-auth';
+import { FlattenMaps } from 'mongoose';
+
+// Define the MongoDB User document type
+interface MongoDBUser extends FlattenMaps<any> {
+  _id: unknown;
+  __v: number;
+  name: string;
+  email: string;
+  password: string;
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: 'jwt' },
   providers: [
@@ -10,21 +22,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request): Promise<UserType | null> {
         if (credentials === null) return null;
+        console.log('credentials', credentials);
         try {
           const user = await User.findOne({
             email: credentials?.email,
           }).lean();
 
           if (user) {
+            const mongoUser = user as MongoDBUser;
+
             const isMatch = await bcrypt.compare(
               credentials.password as string,
-              user.password as string
+              mongoUser.password
             );
 
             if (isMatch) {
-              return user;
+              // Return a NextAuth User object
+              return {
+                email: mongoUser.email,
+                name: mongoUser.name,
+              };
             } else {
               throw new Error('Email or Password is not correct');
             }

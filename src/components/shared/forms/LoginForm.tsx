@@ -1,24 +1,87 @@
+'use client';
+import type React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { LoginFormValues, loginSchema } from '@/schema/auth.schema';
+import { credentialLogin } from '@/lib/action';
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState('');
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      setLoading(true);
+      setServerError('');
+      const formData = new FormData();
+      formData.append('email', data.email);
+      formData.append('password', data.password);
+      const response = await credentialLogin(formData);
+      if (response?.error) {
+        setServerError(response.error || 'Invalid credentials');
+      } else {
+        router.push('/');
+        toast.success('Logged in successfully');
+      }
+    } catch (err) {
+      setServerError('An error occurred during login');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-muted-foreground text-balance">Login to your Acme Inc account</p>
               </div>
+
+              {serverError && (
+                <div className="bg-destructive/15 text-destructive rounded-md p-3 text-sm">
+                  {serverError}
+                </div>
+              )}
+
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="m@example.com" required />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  {...register('email')}
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                />
+                {errors.email && (
+                  <p className="text-destructive mt-1 text-sm">{errors.email.message}</p>
+                )}
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -27,10 +90,18 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  {...register('password')}
+                  aria-invalid={errors.password ? 'true' : 'false'}
+                />
+                {errors.password && (
+                  <p className="text-destructive mt-1 text-sm">{errors.password.message}</p>
+                )}
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? 'Logging in...' : 'Login'}
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-background text-muted-foreground relative z-10 px-2">
