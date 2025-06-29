@@ -42,35 +42,29 @@ export default function FestivalOrganization() {
           >
             <motion.div className="mb-8">
               <motion.h2 
-                className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight"
-                whileHover={{ scale: 1.02 }}
+                className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-none"
+                whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
               >
                 <motion.span 
                   className="block text-gray-400"
-                  style={{
-                    background: "linear-gradient(45deg, #9CA3AF, #6B7280)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 }}
                   whileHover={{ 
-                    background: "linear-gradient(45deg, #a855f7, #8b5cf6)",
-                    transition: { duration: 0.3 }
+                    color: "#a855f7",
+                    transition: { duration: 0.2 }
                   }}
                 >
                   FESTIVAL
                 </motion.span>
                 <motion.span 
-                  className="block text-gray-400"
-                  style={{
-                    background: "linear-gradient(45deg, #9CA3AF, #6B7280)", 
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
+                  className="block text-purple-400"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 }}
                   whileHover={{ 
-                    background: "linear-gradient(45deg, #a855f7, #8b5cf6)",
-                    transition: { duration: 0.3 }
+                    color: "#a855f7",
+                    transition: { duration: 0.2 }
                   }}
                 >
                   ORGANIZATION
