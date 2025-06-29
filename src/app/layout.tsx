@@ -4,6 +4,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import { dbConnect } from '@/lib/mongo';
 import MainLayout from '@/components/layout/MainLayout';
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,6 +28,7 @@ export default async function RootLayout({
   await dbConnect();
   return (
     <html lang="en">
+      <Analytics />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <MainLayout>{children}</MainLayout>
         <Toaster />
