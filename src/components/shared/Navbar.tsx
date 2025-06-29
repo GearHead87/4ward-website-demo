@@ -18,7 +18,9 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", link: "#home" },
     { name: "About", link: "#about" },
-    { name: "CTA", link: "#cta" },
+    { name: "Services", link: "#services" },
+    { name: "Portfolio", link: "#portfolio" },
+    { name: "Why 4WARD", link: "#why" },
   ];
 
   const handleItemClick = () => {
@@ -53,7 +55,7 @@ const Navbar = () => {
               key={`mobile-link-${idx}`}
               href={item.link}
               onClick={handleItemClick}
-              className="w-full px-2 py-2 text-neutral-300 hover:text-neutral-100"
+              className="w-full px-2 py-2 text-white/70 hover:text-purple-300 transition-colors duration-300"
             >
               {item.name}
             </a>
