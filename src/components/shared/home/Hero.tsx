@@ -117,21 +117,21 @@ export default function Hero() {
           >
             <motion.div
               className="relative"
-              style={{
-                filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))"
-              }}
-              animate={{
-                filter: [
-                  "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))",
-                  "drop-shadow(0 0 40px rgba(168, 85, 247, 0.6)) drop-shadow(0 0 80px rgba(168, 85, 247, 0.3))",
-                  "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))"
-                ]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+            //   style={{
+            //     filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))"
+            //   }}
+            //   animate={{
+            //     filter: [
+            //       "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))",
+            //       "drop-shadow(0 0 40px rgba(168, 85, 247, 0.6)) drop-shadow(0 0 80px rgba(168, 85, 247, 0.3))",
+            //       "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))"
+            //     ]
+            //   }}
+            //   transition={{
+            //     duration: 4,
+            //     repeat: Infinity,
+            //     ease: "easeInOut"
+            //   }}
             >
               <Image
                 src="/4ward_big_logo.png"
