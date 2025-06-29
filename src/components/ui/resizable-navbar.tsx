@@ -247,25 +247,17 @@ export const NavbarLogo = () => {
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
     >
-      <motion.div 
-        className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center text-white font-black text-lg"
+      <motion.div
+        className="h-8 w-auto"
         whileHover={{ rotate: 5 }}
       >
-        4
-      </motion.div>
-      <motion.div className="flex flex-col">
-        <motion.span 
-          className="font-black text-white text-lg leading-tight"
-          whileHover={{ color: "#a855f7" }}
-        >
-          4WARD
-        </motion.span>
-        <motion.span 
-          className="font-light text-purple-300 text-xs tracking-wider leading-tight"
-          whileHover={{ letterSpacing: "0.15em" }}
-        >
-          ENTERTAINMENT
-        </motion.span>
+        <img 
+          src="/4ward_big_logo.png"
+          alt="4WARE Logo"
+          width={72}
+          height={72}
+          className="object-contain"
+        />
       </motion.div>
     </motion.a>
   );
