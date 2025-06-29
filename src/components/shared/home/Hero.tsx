@@ -138,7 +138,7 @@ export default function Hero() {
                 alt="4WARD Entertainment"
                 width={600}
                 height={200}
-                className="w-auto h-32 md:h-40 lg:h-48 object-contain"
+                className="w-auto h-32 md:h-40 lg:h-56 object-contain"
                 priority
               />
             </motion.div>
