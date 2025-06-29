@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { DotPattern } from "@/components/magicui/dot-pattern";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -103,26 +104,47 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mb-12"
         >
-          <motion.h1 
-            className="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-4"
+          {/* 4WARD Logo */}
+          <motion.div
+            className="mb-8 flex justify-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             whileHover={{ 
-              scale: 1.02,
+              scale: 1.05,
               transition: { duration: 0.3, ease: "easeOut" }
             }}
-            style={{
-              textShadow: "0 0 30px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1)"
-            }}
           >
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+            <motion.div
+              className="relative"
+              style={{
+                filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))"
+              }}
+              animate={{
+                filter: [
+                  "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))",
+                  "drop-shadow(0 0 40px rgba(168, 85, 247, 0.6)) drop-shadow(0 0 80px rgba(168, 85, 247, 0.3))",
+                  "drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.2))"
+                ]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
-              4WARD
-            </motion.span>
-          </motion.h1>
+              <Image
+                src="/4ward_big_logo.png"
+                alt="4WARD Entertainment"
+                width={600}
+                height={200}
+                className="w-auto h-32 md:h-40 lg:h-48 object-contain"
+                priority
+              />
+            </motion.div>
+          </motion.div>
           
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, width: 0 }}
             animate={{ opacity: 1, width: "auto" }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -137,7 +159,7 @@ export default function Hero() {
             >
               Entertainment
             </motion.p>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         {/* Description */}
