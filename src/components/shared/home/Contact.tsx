@@ -75,7 +75,7 @@ export default function Contact() {
         </div>
 
         {/* 4WARD logo */}
-        <motion.div
+        {/* <motion.div
           className="text-right mt-16"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -87,7 +87,7 @@ export default function Contact() {
               ENTERTAINMENT
             </span>
           </h3>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Floating elements */}
