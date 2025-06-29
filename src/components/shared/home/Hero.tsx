@@ -8,9 +8,24 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0 p-2"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/background_low.mp4" type="video/mp4" />
+      </video>
+
+      {/* Video Overlay - Purple/Black Theme */}
+      <div className="absolute inset-0 bg-black/60 z-1" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-purple-900/40 to-black/70 z-2" />
+
       {/* Animated Dot Pattern Background */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-3"
         style={{
           backgroundImage: 'radial-gradient(circle at 0.5px 0.5px, rgba(168, 85, 247, 0.15) 0.5px, transparent 0)',
           backgroundSize: '12px 12px',
@@ -28,7 +43,7 @@ export default function Hero() {
 
       {/* Secondary Dot Layer for Depth */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-3"
         style={{
           backgroundImage: 'radial-gradient(circle at 0.5px 0.5px, rgba(147, 51, 234, 0.08) 0.5px, transparent 0)',
           backgroundSize: '20px 20px',
@@ -46,7 +61,7 @@ export default function Hero() {
 
       {/* Glowing Accent Dots */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-3"
         style={{
           backgroundImage: 'radial-gradient(circle at 0.5px 0.5px, rgba(196, 181, 253, 0.25) 1px, transparent 0)',
           backgroundSize: '40px 40px',
@@ -65,12 +80,12 @@ export default function Hero() {
       
       {/* Background Gradient Overlay */}
       <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-purple-900/20 z-1"
+        className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-purple-900/30 z-4"
         animate={{
           background: [
-            "linear-gradient(to bottom right, #000000 0%, rgba(0,0,0,0.95) 50%, rgba(88, 28, 135, 0.2) 100%)",
-            "linear-gradient(to bottom right, #000000 0%, rgba(0,0,0,0.90) 50%, rgba(147, 51, 234, 0.25) 100%)",
-            "linear-gradient(to bottom right, #000000 0%, rgba(0,0,0,0.95) 50%, rgba(88, 28, 135, 0.2) 100%)"
+            "linear-gradient(to bottom right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.4) 50%, rgba(88, 28, 135, 0.3) 100%)",
+            "linear-gradient(to bottom right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.35) 50%, rgba(147, 51, 234, 0.35) 100%)",
+            "linear-gradient(to bottom right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.4) 50%, rgba(88, 28, 135, 0.3) 100%)"
           ]
         }}
         transition={{
