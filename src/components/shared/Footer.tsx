@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import Image from "next/image";
 
 const Footer = () => {
   const ref = useRef(null);
@@ -44,24 +45,19 @@ const Footer = () => {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              <motion.h3 
-                className="text-3xl md:text-4xl font-black text-white mb-2"
+              <motion.div
+                className="relative w-48 h-24"
                 whileHover={{ 
-                  color: "#a855f7",
+                  scale: 1.05,
                   transition: { duration: 0.3 }
                 }}
               >
-                4WARD
-              </motion.h3>
-              <motion.p 
-                className="text-lg text-purple-300 font-light tracking-wider"
-                whileHover={{ 
-                  letterSpacing: "0.3em",
-                  transition: { duration: 0.3 }
-                }}
-              >
-                ENTERTAINMENT
-              </motion.p>
+                <img    
+                  src="/4ward_logo.png"
+                  alt="4WARD Entertainment Logo"
+                  className="object-contain w-full h-full"
+                />
+              </motion.div>
             </motion.div>
 
             <motion.p 
