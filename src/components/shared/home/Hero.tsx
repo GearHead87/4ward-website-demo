@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background Dot Pattern */}
-      <DotPattern
+      {/* <DotPattern
         className="opacity-30"
         width={20}
         height={20}
@@ -16,7 +16,7 @@ export default function Hero() {
         cy={1}
         cr={1}
         glow={true}
-      />
+      /> */}
       
       {/* Background Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-purple-900/20" />
